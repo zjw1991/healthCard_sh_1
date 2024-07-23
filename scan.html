@@ -6,21 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>体检明细查看</title>
     <link href="css/userinfo.css" rel="stylesheet">
-    <script type="text/javascript" src="js/md5.js"></script>
-    <script src="js/jquery.js" type="text/javascript"></script>
-    
-    <script type="text/javascript" src="js/html2canvas.js"></script>  
-    
-    <script type="text/javascript" src="js/jspdf.debug.js"></script>
-    <script type="text/javascript" src="js/basic.js"></script>
-    
-	<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
-    
-    <script src="js/jquery.placehold.min.js"></script>
-    <script src="js/layer.min.js" type="text/javascript"></script>
-    <script src="js/index.js" type="text/javascript"></script>
-    <script src="js/forweb.js"></script>
-    <script src="js/layer.js" type="text/javascript"></script>
   </head>
   <body>
     <div class="alert-box">
@@ -95,93 +80,6 @@
             </div>
         </div>
     </div>
-    
-<script type="text/javascript">
-//获取url中的参数
-function getUrlParam(name) {
-	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-	var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-	if (r != null) return unescape(r[2]); return null; //返回参数值
-}
-var id = getUrlParam('id');
-$(function(){
-	$("#name").text(id);
-	// $("#photoImg").attr("src",'../img/mr.png');
-	$.ajax({
-		url:'selectAllById.action',
-		type:'POST',
-		dataType:'json',
-		data:{'id':id},
-		success:function(data){
-			if(data.ret == "0"){
-				$("#name").text(data.data.name);
-				if(data.data.physicalResult=='01'){
-					$("#physicalResult").text("合格");
-					}else if(data.data.physicalResult=='02'){
-						$("#physicalResult").text("不合格");
-						}
-				$("#healthCardNo").text(data.data.healthCardNo);
-				
-				if(data.data.cardType=='01') {
-                    $("#cardType").text("居民身份证");
-                }else if(data.data.cardType=='02') {
-                    $("#cardType").text("护照");
-                }else if(data.data.cardType=='03') {
-                    $("#cardType").text("港澳台居民通行证");
-                }else if(data.data.cardType=='04') {
-                    $("#cardType").text("回乡证");
-                }else if(data.data.cardType=='05') {
-                    $("#cardType").text("其他证件");
-                }else if(data.data.cardType=='06') {
-                    $("#cardType").text("外国人永久居留身份证");
-                }
-				$("#cardNo").text(data.data.cardNo);
-				$("#tel").text(data.data.tel);
-				$("#compName").text(data.data.compName);
-				//$("#physicalType").text(data.data.physicalType);
-				if(data.data.physicalType=='01'){
-					$("#physicalType").text("食品、饮用水、化妆品、公共场所");
-					$(".tjlxTextTitle").text("体检类型");
-					}else if(data.data.physicalType=='02'){
-						$("#physicalType").text("饮用水、化妆品、公共场所");
-						$(".tjlxTextTitle").text("体检类型");
-						}else{
-							$("#physicalType").text(data.data.physicalType);
-							$(".tjlxTextTitle").text("工种代码");
-							}
-				
-				$("#reportDate").text(data.data.reportDate);
-				$("#effectiveData").text(data.data.effectiveData);
-				
-				
-				var zerstr = data.data.createDate;
-				$("#createDate").text(zerstr.substring(0,10));
-				
-				$("#unfitCause").text(data.data.unfitCause);
-				$("input[name='id']").val(data.data.id);
-				if(data.data.photoAddr=='' || data.data.photoAddr=='undefined'){
-					$("#photoImg").attr("src",'../img/mr.png');
-				}else{
-				$("#photoImg").attr("src","data:image/png;base64,"+data.data.photoFile);
-					 //$("#photoImg").attr("src",'http://'+strwindowurl+'/uploadJkzServer/upload/'+data.data.photoAddr+'');
-					 //$.ajax({
-					//	url:'getPhotoById.action',
-					//	type:'POST',
-					//	data:{id:data.data.id},
-					//	dataType:'json',
-					//	success:function(data){
-					//		$("#photoImg").attr("src","data:image/png;base64,"+data.data.photoFile);
-					//	}
-					//r});
-				}
-				$("#wxing2").attr("src","createEWM.action?id="+data.data.id+"");
-			}else{
-				alert(data.msg);
-				}
-			}
-		});
-})
-</script>
-    
+
   </body>
 </html>
