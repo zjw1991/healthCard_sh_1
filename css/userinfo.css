@@ -1,0 +1,182 @@
+body{ margin:0; padding:0;}
+.alert-box{
+   /* width: 1000px;*/
+    background: #fff;
+    position: relative;
+}
+.alert-box a{
+    text-decoration: none;
+}
+.alert-box .alert-box-title{
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 2px solid #85bff1;
+    color: #000;
+    text-align: center;
+    font-size: 20px;
+}
+.alert-box .alert-box-title .dy-btn {
+    width: 68px;
+    height: 32px;
+    line-height: 32px;
+    color: #fff;
+    font-size: 16px;
+    background: #318ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 4px;
+    float: right;
+    margin-top: 10px;
+    margin-right: 32px;
+}
+.alert-box .alert-box-title .dy-btn:hover{
+    background: #3596eb;
+}
+.alert-box .alert-box-title .dy-btn i{
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    background: url("resources/dy-white.png") no-repeat;
+    position: absolute;
+    top: 5px;
+    right: 7px;
+}
+
+.alert-box .person-message-box{
+   /* height: 145px;*/
+    border-bottom: 1px solid #ced2d6;
+}
+.alert-box .person-message-box .message-box-out{
+    
+   /* padding-top: 15px;*/
+}
+.alert-box .person-message-box .photo-box{
+    float: left;
+    width: 90px;
+    height: 110px;
+    /*background: url("resources/photo.png") no-repeat;*/
+    margin-top: 0;
+}
+
+.alert-box .person-message-box .message-box-table{
+    color: #000;
+    font-size: 16px;
+}
+.alert-box .person-message-box .message-box-table tr{
+    /*height: 30px;*/
+}
+.alert-box .person-message-box .message-box-table tr td{
+
+}
+.alert-box .person-message-box .message-box-table tr td.even{
+    text-align: right;
+}
+.alert-box .person-message-box .message-box-table tr td.odd{
+    width: 160px;
+	word-wrap:break-word;
+word-break:break-all;
+}
+.alert-box .person-message-box .message-box-table tr td input.odd-input{
+    width: 88px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #b5b5b5;
+    background: #eff6fc;
+    padding-left: 13px;
+    display: inline-block;
+}
+.alert-box .person-message-box .message-box-table tr td.select-box-2{
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #b5b5b5;
+    background: #eff6fc;
+    border-radius: 2px;
+    padding-left: 2px;
+    margin-top: 30px;
+    margin-left: 10px;
+    display: inline-block;
+    font-size: 16px;
+}
+.alert-box .person-message-box .message-box-table tr td i.icon-bhg{
+    width: 86px;
+    height: 86px;
+    /*background: url("resources/bhg.png") no-repeat;*/
+    display: inline-block;
+    margin-left: 30px;
+    margin-top: -10px;
+}
+.alert-box .person-message-box .message-box-table tr td i.icon-hg{
+     width: 86px;
+     height: 86px;
+     /*background: url("resources/hg.png") no-repeat;*/
+     display: inline-block;
+     margin-left: 30px;
+     margin-top: -10px;
+ }
+
+.alert-box .blue-box{
+    padding:0 0 15px 0;
+    background: #f0f6fb;
+}
+.alert-box .blue-box .blue-table-out{
+    padding-top: 6px;
+}
+.alert-box .blue-box .blue-table{
+    color: #000;
+    font-size: 16px;
+}
+.alert-box .blue-box .blue-table tr{
+    /*height: 40px;*/
+}
+.alert-box .blue-box .blue-table tr td{
+
+}
+.alert-box .blue-box .blue-table tr td i.blue-line{
+    width: 2px;
+    height: 16px;
+    background: #3399ff;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-top: -1px;
+}
+.alert-box .blue-box .blue-table tr td.date-box{
+    width: 160px;
+}
+.alert-box .blue-box .white-bhg{
+    height: 150px;
+    border-radius: 10px;
+    background: #fff;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 6px;
+}
+.alert-box .blue-box .white-bhg .bhg-title{
+    font-size: 16px;
+    color: #000;
+    display: block;
+    padding-top: 18px;
+    padding-left: 20px;
+}
+.alert-box .blue-box .white-bhg .bhg-content{
+    display: block;
+    margin-left: 45px;
+    margin-right: 38px;
+    font-size: 14px;
+    margin-top: 23px;
+}
+.alert-box a.icon-close{
+    width: 26px;
+    height: 26px;
+    display: inline-block;
+    background: url("resources/icon-close.png") no-repeat;
+    position: absolute;
+    top: -15px;
+    right: -11px;
+    cursor: pointer;
+}

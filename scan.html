@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>体检明细查看</title>
+    <link href="css/userinfo.css" rel="stylesheet">
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script src="js/jquery.js" type="text/javascript"></script>
+    
+    <script type="text/javascript" src="js/html2canvas.js"></script>  
+    
+    <script type="text/javascript" src="js/jspdf.debug.js"></script>
+    <script type="text/javascript" src="js/basic.js"></script>
+    
+	<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+    
+    <script src="js/jquery.placehold.min.js"></script>
+    <script src="js/layer.min.js" type="text/javascript"></script>
+    <script src="js/index.js" type="text/javascript"></script>
+    <script src="js/forweb.js"></script>
+    <script src="js/layer.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="alert-box">
+        <div class="alert-box-title">
+            体检明细查看
+        </div>
+        <div class="person-message-box">
+            <div class="message-box-out">
+            	<table class="message-box-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td><i class="photo-box"><img id="photoImg" src="./img//myphoto.jpg" width="90" height="110"></i></td>
+                    <td>
+                    	<table><input type="hidden" class="text-t" value="" name="id" />
+                
+                  <tr>
+                    <td class="even" width="120">姓名：</td>
+                    <td class="odd" width="160">张三</td>
+                  </tr>
+                  <tr>
+                    <td align="right">健康证号：</td>
+                    <td class="odd" id="healthCardNo">511422121907400774412596006</td>
+                  </tr>
+                  <tr>
+                    <td align="right">体检结果：</td>
+                    <td id='physicalResult'>合格</td>
+                  </tr>
+                  <tr>
+                    <td align="right">证件号码：</td>
+					<td class="odd" id="cardNo">**************0596</td>
+                  </tr>
+                  <!-- <tr>
+                    <td align="right">联系电话：</td>
+					<td class="odd" id="tel"></td>
+                  </tr> -->
+                </table>
+                    </td>
+                  </tr>
+                </table>
+
+                
+            </div>
+        </div>
+        <div class="blue-box">
+            <div class="blue-table-out">
+                <table class="blue-table">
+                    <tr>
+                        <td width="100"><i class="blue-line"></i>检查单位：</td>
+                        <td id="compName">上海尚德医院</td>
+                    </tr>
+                    <tr id="tjlxText">
+                        <td><i class="blue-line"></i><span class="tjlxTextTitle">体检类型</span>：</td>
+                        <td id="physicalType">食品、饮用水、化妆品、公共场所</td>
+                    </tr>
+                    <tr>
+                        <td><i class="blue-line"></i>报告日期：</td>
+                        <td class="date-box" id="reportDate">2022-12-16</td>
+                    </tr>
+                    <tr>
+                        <td><i class="blue-line"></i>有效日期：</td>
+                        <td class="date-box" id="effectiveData">2022-12-16</td>
+                    </tr>
+                   <!-- <tr>
+                        <td><i class="blue-line"></i>上传日期：</td>
+                        <td class="date-box" id="createDate">2022-12-16</td>
+                    </tr> -->
+                </table>
+            </div>
+            <div class="white-bhg" id="cause">
+                <span class="bhg-title">不合格原因:</span>
+                <div class="bhg-content" id="unfitCause"></div>
+    
+            </div>
+        </div>
+    </div>
+    
+<script type="text/javascript">
+//获取url中的参数
+function getUrlParam(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+	if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+var id = getUrlParam('id');
+$(function(){
+	$("#name").text(id);
+	// $("#photoImg").attr("src",'../img/mr.png');
+	$.ajax({
+		url:'selectAllById.action',
+		type:'POST',
+		dataType:'json',
+		data:{'id':id},
+		success:function(data){
+			if(data.ret == "0"){
+				$("#name").text(data.data.name);
+				if(data.data.physicalResult=='01'){
+					$("#physicalResult").text("合格");
+					}else if(data.data.physicalResult=='02'){
+						$("#physicalResult").text("不合格");
+						}
+				$("#healthCardNo").text(data.data.healthCardNo);
+				
+				if(data.data.cardType=='01') {
+                    $("#cardType").text("居民身份证");
+                }else if(data.data.cardType=='02') {
+                    $("#cardType").text("护照");
+                }else if(data.data.cardType=='03') {
+                    $("#cardType").text("港澳台居民通行证");
+                }else if(data.data.cardType=='04') {
+                    $("#cardType").text("回乡证");
+                }else if(data.data.cardType=='05') {
+                    $("#cardType").text("其他证件");
+                }else if(data.data.cardType=='06') {
+                    $("#cardType").text("外国人永久居留身份证");
+                }
+				$("#cardNo").text(data.data.cardNo);
+				$("#tel").text(data.data.tel);
+				$("#compName").text(data.data.compName);
+				//$("#physicalType").text(data.data.physicalType);
+				if(data.data.physicalType=='01'){
+					$("#physicalType").text("食品、饮用水、化妆品、公共场所");
+					$(".tjlxTextTitle").text("体检类型");
+					}else if(data.data.physicalType=='02'){
+						$("#physicalType").text("饮用水、化妆品、公共场所");
+						$(".tjlxTextTitle").text("体检类型");
+						}else{
+							$("#physicalType").text(data.data.physicalType);
+							$(".tjlxTextTitle").text("工种代码");
+							}
+				
+				$("#reportDate").text(data.data.reportDate);
+				$("#effectiveData").text(data.data.effectiveData);
+				
+				
+				var zerstr = data.data.createDate;
+				$("#createDate").text(zerstr.substring(0,10));
+				
+				$("#unfitCause").text(data.data.unfitCause);
+				$("input[name='id']").val(data.data.id);
+				if(data.data.photoAddr=='' || data.data.photoAddr=='undefined'){
+					$("#photoImg").attr("src",'../img/mr.png');
+				}else{
+				$("#photoImg").attr("src","data:image/png;base64,"+data.data.photoFile);
+					 //$("#photoImg").attr("src",'http://'+strwindowurl+'/uploadJkzServer/upload/'+data.data.photoAddr+'');
+					 //$.ajax({
+					//	url:'getPhotoById.action',
+					//	type:'POST',
+					//	data:{id:data.data.id},
+					//	dataType:'json',
+					//	success:function(data){
+					//		$("#photoImg").attr("src","data:image/png;base64,"+data.data.photoFile);
+					//	}
+					//r});
+				}
+				$("#wxing2").attr("src","createEWM.action?id="+data.data.id+"");
+			}else{
+				alert(data.msg);
+				}
+			}
+		});
+})
+</script>
+    
+  </body>
+</html>

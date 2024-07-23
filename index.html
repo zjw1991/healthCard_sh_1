@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电子健康证</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-size:13px;
+        }
+    
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 450px;
+            padding: 20px;
+            box-sizing: border-box;
+            border-top: 10px solid #1A476E;
+        }
+        .card-header {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .card-content {
+            margin-bottom: 20px;
+        }
+        .card-content p {
+            margin: 5px 0;
+        }
+        .card-footer {
+            border: 1px solid #000;
+            text-align: left;
+            font-size: 10px;
+        }
+        .qr-code {
+            display: flex;
+        }
+        .qr-code img {
+            width: 100px;
+            height: 100px;
+        }
+        .photo {
+            width: 80px;
+            height: 100px;
+            float: right;
+        }
+        .qrcode-line{
+            height: 120px;
+            width: 1px;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            上海市从业人员健康合格证
+        </div>
+        <div class="card-content">
+            <div class="photo">
+                <img style="width: 82px;height: 102px;border:1px solid #89A7BB;" src="./img/myphoto.jpg" alt="照片">
+            </div>
+            <p><span class="title">证&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</span>511422121907400774412596006</p>
+            <p><span class="title">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span>田振</p>
+            <p><span class="title">从业范围：</span>食品、饮用水、化妆品、公共场所</p>
+            <p><span class="title">证件类型：</span>居民身份证</p>
+            <p><span class="title">证件号码：</span>412702197911050596</p>
+            <p><span class="title">发证日期：</span>2022-12-16</p>
+            <p><span class="title">健康检查单位：</span>上海尚德医院</p>
+        </div>
+
+        <div class="mid-desc" style="font-size:12px;margin-bottom:10px">本合格证作为从事食品、饮用水、化妆品、公共场所四类行业工作的健康证明需 与”上海市从业人员预防性健康检查信息网“的电子健康合格证信息一致方有效。</div>
+
+        <div class="card-footer">
+            <div class="qr-code">
+                <div style=" writing-mode: vertical-lr;margin-top:5px;">验&nbsp;证&nbsp;码</div>
+                <img src="./img/myqrcode.png" alt="二维码" style="margin:5px">
+                <div class="qrcode-line"></div>
+                <div style="margin-left:5px;">
+                    <p>您可以通过以下方式进行验证：</p>
+                    <p>(一)请扫描二维码进行验证；</p>
+                    <p>(二)访问www.jkz.sh.cn输入信息进行验证；</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
